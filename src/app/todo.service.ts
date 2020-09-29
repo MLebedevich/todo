@@ -18,7 +18,8 @@ export class TodoService {
     }
 
     deleteData(todo: string) {
-       // return this.http.delete(this.url, todo);
+        const currentUrl = `${this.url}/${todo}`;
+        return this.http.delete(currentUrl);
     }
 
 }
