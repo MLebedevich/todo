@@ -1,3 +1,4 @@
+import { todoEffects } from './store/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +9,8 @@ import { AppComponent } from './app.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { CommonModule } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FormsModule,
     StoreModule.forRoot({todoList: reducer}),
     CommonModule,
-    StoreDevtoolsModule.instrument()
+    HttpClientModule,
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([todoEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

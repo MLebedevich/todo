@@ -12,10 +12,10 @@ import {selectTaskList} from './store/selector';
 export class AppComponent {
   title: string;
   todoList$: Observable<any>;
-  todoList: string[] = ['abs', 'bce', 'aaa'];
+  //todoList: string[] = ['abs', 'bce', 'aaa'];
 
   constructor(private store: Store<{todoList: any}>) {
-    this.todoList$ = this.store.select(selectTaskList);//.pipe(map(x =>x.taskList));
+    this.todoList$ = this.store.select(selectTaskList);
     this.todoList$.subscribe((data)=>{console.log(data)})
   }
 
