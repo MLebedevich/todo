@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
 import {selectTaskList} from './store/selector';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import {selectTaskList} from './store/selector';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  inputForm = new FormControl('');
   title: string;
   todoList$: Observable<any>;
 
@@ -18,8 +20,9 @@ export class AppComponent {
     this.todoList$.subscribe((data)=>{console.log(data)})
   }
 
-  submitValue(taskItem: string){
-    console.log(this.title);
+  submitValue(){
+    const taskItem: string = this.inputForm.value;
+    //console.log("formValue " + formValue);
     this.store.dispatch(addTodoAction({taskItem}));
   }
 

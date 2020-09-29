@@ -1,8 +1,9 @@
-<input #InputValue
-[(ngModel)]="title"
-(keyup.enter)="submitValue($event.target.value)">
+<label>
+  New task:
+  <input type="text" [formControl]="inputForm">
+</label>
 
-<button (click)="submitValue(InputValue.value)">Add</button>
+<button (click)="submitValue()">Add</button>
 <ul>
   <li *ngFor="let todoItem of todoList$ | async"
   (click)="deleteValue(todoItem)">{{ todoItem }}</li> <!-- deleteValue(todoItem) -->
