@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   })
 
 export class TodoService {
-    url: string = 'https://5f6af582d808b90016bc1878.mockapi.io/:endpoint';
+    url: string = 'https://5f6af582d808b90016bc1878.mockapi.io/todos';
 
     constructor (private http: HttpClient) {}
 

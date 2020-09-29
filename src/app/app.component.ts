@@ -12,7 +12,6 @@ import {selectTaskList} from './store/selector';
 export class AppComponent {
   title: string;
   todoList$: Observable<any>;
-  //todoList: string[] = ['abs', 'bce', 'aaa'];
 
   constructor(private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
@@ -24,8 +23,8 @@ export class AppComponent {
     this.store.dispatch(addTodoAction({taskItem}));
   }
 
-  deleteValue(taskItem: string){ //string
-    //console.log(taskItem);
+  deleteValue(taskItem: string){ 
+    //console.log($event)
     this.store.dispatch(deleteTodoAction({taskItem}))
   }
 }

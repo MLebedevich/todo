@@ -4,7 +4,7 @@ import { ToDoActions, getTodosSuccessAction, getTodosFailedAction,
 import { Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable, of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
 
@@ -16,7 +16,8 @@ export class todoEffects {
       ofType(ToDoActions.ADD_TODO),
       mergeMap(({taskItem}) => 
       this.todoService.postData(taskItem).pipe(
-        map((data: string) => getTodosSuccessAction({ data })), 
+        tap(console.log),
+        map((taskItem: string) => getTodosSuccessAction({ taskItem })), 
         catchError(() => of(getTodosFailedAction()))))
     ))
 
