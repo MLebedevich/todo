@@ -17,8 +17,8 @@ export class TodoService {
         return this.http.post(this.url, todo);//tasks
     }
 
-    deleteData(todo: string) {
-        const currentUrl = `${this.url}/${todo}`;
+    deleteData(todo: string) { // delete -> /todos/:id,for example /todos/2
+        const currentUrl = `${this.url}/2`;
         return this.http.delete(currentUrl);
     }
 
