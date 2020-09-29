@@ -1,7 +1,7 @@
 import { todoEffects } from './store/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/reducers';
 
@@ -24,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([todoEffects])
+    EffectsModule.forRoot([todoEffects]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

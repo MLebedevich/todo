@@ -12,14 +12,20 @@ export class TodoService {
 
     constructor (private http: HttpClient) {}
 
-    postData(todo: string ) {//IToDo
+    postTask(todo: string ) {//IToDo
         //const tasks = todos.taskList;
         return this.http.post(this.url, todo);//tasks
     }
 
-    deleteData(todo: string) { // delete -> /todos/:id,for example /todos/2
-        const currentUrl = `${this.url}/2`;
+    deleteTask(todo: string) { // delete -> /todos/:id,for example /todos/2
+        const currentUrl = `${this.url}/${todo}`; // поменять todo на id
         return this.http.delete(currentUrl);
+    }
+
+    getTasks() {
+    }
+
+    putTask() {
     }
 
 }

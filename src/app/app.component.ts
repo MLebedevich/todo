@@ -25,6 +25,7 @@ export class AppComponent {
 
   deleteValue(taskItem: string){ 
     //console.log($event)
+    //console.log(taskItem)
     this.store.dispatch(deleteTodoAction({taskItem}))
   }
 }

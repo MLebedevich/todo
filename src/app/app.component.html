@@ -5,5 +5,5 @@
 <button (click)="submitValue(InputValue.value)">Add</button>
 <ul>
   <li *ngFor="let todoItem of todoList$ | async"
-  (click)="deleteValue($event.target.value)">{{ todoItem }}</li> <!-- deleteValue(todoItem) -->
+  (click)="deleteValue(todoItem)">{{ todoItem }}</li> <!-- deleteValue(todoItem) -->
 </ul>

@@ -15,7 +15,7 @@ export class todoEffects {
     this.actions$.pipe(
       ofType(ToDoActions.ADD_TODO),
       mergeMap(({taskItem}) => 
-      this.todoService.postData(taskItem).pipe(
+      this.todoService.postTask(taskItem).pipe(
         tap(console.log),
         map((taskItem: string) => getTodosSuccessAction({ taskItem })), 
         catchError(() => of(getTodosFailedAction()))))
@@ -25,7 +25,7 @@ export class todoEffects {
   public deleteTodo$: Observable<Action> = createEffect(()=>
       this.actions$.pipe(ofType(ToDoActions.DELETE_TODO),
       mergeMap(({taskItem}) => 
-      this.todoService.deleteData(taskItem).pipe(
+      this.todoService.deleteTask(taskItem).pipe(
         map(()=>deleteTodosSuccessAction()),
         catchError(() => of(deleteTodosFailedAction()))
       ))
