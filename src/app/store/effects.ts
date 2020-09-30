@@ -1,3 +1,4 @@
+import { ITodoTask } from './../todo.interface';
 import { TodoService } from './../todo.service';
 import { ToDoActions, getTodosSuccessAction, getTodosFailedAction, 
   deleteTodosSuccessAction, deleteTodosFailedAction } from './actions';
@@ -17,7 +18,7 @@ export class todoEffects {
       mergeMap(({taskItem}) => 
       this.todoService.postTask(taskItem).pipe(
         tap(console.log),
-        map((taskItem: string) => getTodosSuccessAction({ taskItem })), 
+        map((taskItem: ITodoTask) => getTodosSuccessAction({ taskItem })), 
         catchError(() => of(getTodosFailedAction()))))
     ))
 

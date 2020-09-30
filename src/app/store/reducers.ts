@@ -15,20 +15,10 @@ const todoReducer = createReducer(
     {
       ...state, 
       taskList: [ ...state.taskList, taskItem]})), //taskItem поменять строку на обьект
-  on(deleteTodoAction, (state, {taskItem}) => {
-    const requredId = taskItem.id;
-
-    console.log(requredId);
-      
-    const array = [...state.taskList];
-    const index = array.findIndex(x => {
-      return x.id === requredId;
-    })
-    console.log(index);
-    array.splice(index, 1);
-
-    return {...state, taskList: [...array]};
-  })
+  on(deleteTodoAction, (state, {taskItem}) => ({
+    ...state,
+    taskList: [...state.taskList.filter(({id}:ITodoTask)=>id !== taskItem.id)] 
+  }))
 );
 
 export function reducer(state: any, action: Action) {

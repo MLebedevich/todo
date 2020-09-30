@@ -27,8 +27,12 @@ export const deleteTodoAction = createAction(ToDoActions.DELETE_TODO,
   props<{taskItem: ITodoTask}>());
 
 export const getTodosSuccessAction = createAction(ToDoActions.GET_TODO_SUCCESS,
-  props<{taskItem: string}>());
+  props<{taskItem: ITodoTask}>());
 export const getTodosFailedAction = createAction(ToDoActions.GET_TODO_FAILED);
 
 export const deleteTodosSuccessAction = createAction(ToDoActions.DELETE_TODO_SUCCESS);
 export const deleteTodosFailedAction = createAction(ToDoActions.DELETE_TODO_FAILED);
+
+export const LoadTodosAction = createAction(ToDoActions.LOAD_TODOS);
+export const LoadTodosSuccessAction = createAction(ToDoActions.LOAD_TODOS_SUCCESS);
+
