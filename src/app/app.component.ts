@@ -14,18 +14,21 @@ import { FormControl } from '@angular/forms';
 export class AppComponent {
   inputForm = new FormControl('');
   title: string;
-  todoList$: Observable<any>;
+  todoList$: Observable<any>;// = this.store.select(state => state.todoList);
 
   constructor(private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
     //this.todoList$.subscribe((data)=>{console.log(data)});
   }
 
+  ngOnInit(){
+    this.store.dispatch(loadTodosAction());
+  }
+
   submitValue(){
     const taskItem: string = this.inputForm.value;
     //console.log("formValue " + formValue);
     this.store.dispatch(addTodoAction({taskItem}));
-    this.store.dispatch(loadTodosAction());
   }
 
   deleteValue(taskItem: ITodoTask){

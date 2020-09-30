@@ -38,7 +38,8 @@ export class todoEffects {
     this.actions$.pipe(ofType(ToDoActions.LOAD_TODOS),
     mergeMap(() => this.todoService.getTasks().pipe(
       tap(console.log),
-      map((todos: ITodoTask[]) => loadTodosSuccessAction(todos)),
+      map((todos: ITodoTask[]) => {console.log(todos); 
+      return loadTodosSuccessAction({todos})}),
       catchError(() => of(loadTodosFailedAction()))
     )))
   )
