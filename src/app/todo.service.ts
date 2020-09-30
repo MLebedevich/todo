@@ -14,7 +14,6 @@ export class TodoService {
 
     postTask(todo: string ) {//IToDo
         //const tasks = todos.taskList;
-        console.log(todo)
         return this.http.post(this.url, {id:1, task: todo});//tasks - {id:2, task: 'Read a book'}
     }
 
