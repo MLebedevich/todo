@@ -1,5 +1,5 @@
 import { ITodoTask } from './todo.interface';
-import { addTodoAction, deleteTodoAction } from './store/actions';
+import { addTodoAction, deleteTodoAction, loadTodosAction } from './store/actions';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
@@ -25,6 +25,7 @@ export class AppComponent {
     const taskItem: string = this.inputForm.value;
     //console.log("formValue " + formValue);
     this.store.dispatch(addTodoAction({taskItem}));
+    this.store.dispatch(loadTodosAction());
   }
 
   deleteValue(taskItem: ITodoTask){
