@@ -1,3 +1,4 @@
+import { ITodoTask } from './todo.interface';
 import { addTodoAction, deleteTodoAction } from './store/actions';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -17,7 +18,7 @@ export class AppComponent {
 
   constructor(private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
-    this.todoList$.subscribe((data)=>{console.log(data)});
+    //this.todoList$.subscribe((data)=>{console.log(data)});
   }
 
   submitValue(){
@@ -26,7 +27,7 @@ export class AppComponent {
     this.store.dispatch(addTodoAction({taskItem}));
   }
 
-  deleteValue(taskItem: string){
+  deleteValue(taskItem: ITodoTask){
     //console.log($event)
     //console.log(taskItem)
     this.store.dispatch(deleteTodoAction({taskItem}))

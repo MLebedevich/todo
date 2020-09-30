@@ -1,4 +1,4 @@
-import { IToDo } from './todo.interface';
+import { IToDo, ITodoTask } from './todo.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,15 +17,17 @@ export class TodoService {
         return this.http.post(this.url, {id:2, task: 'Read a book'});//tasks - {id:2, task: 'Read a book'}
     }
 
-    deleteTask(todo: string) { // delete -> /todos/:id,for example /todos/2
-        const currentUrl = `${this.url}/${todo}`; // поменять todo на id
+    deleteTask(todo: ITodoTask) { // delete -> /todos/:id,for example /todos/2
+        const currentUrl = `${this.url}/${todo.id}`; 
         return this.http.delete(currentUrl);
     }
 
     getTasks() {
+        return this.http.get(this.url);
     }
 
-    putTask() {
+    putTask(id: number) {
+        return this.http.put(this.url, id);
     }
 
 }
