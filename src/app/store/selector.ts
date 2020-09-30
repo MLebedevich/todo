@@ -6,5 +6,5 @@ export const selectActivities = (state: any ) => state.todoList;
 
 export const selectTaskList = createSelector(
   selectActivities,
-  (state: IToDo) => state.taskList
+  (state: IToDo) => state.taskList//.map(value => value.task)
 );

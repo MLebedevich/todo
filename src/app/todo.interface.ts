@@ -1,11 +1,10 @@
 export interface IToDo {
-  taskList: string[];
+  taskList: ITodoTask[]; // ITodoTask[] /string[]
 }
 
-/*
-export interface IToDo {
-  id?: number;
+export interface ITodoTask {
+  id: number;
   task: string;
   completed?: boolean;
 }
-*/
+

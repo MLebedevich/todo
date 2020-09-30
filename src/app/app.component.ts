@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
-    this.todoList$.subscribe((data)=>{console.log(data)})
+    this.todoList$.subscribe((data)=>{console.log(data)});
   }
 
   submitValue(){
@@ -26,7 +26,7 @@ export class AppComponent {
     this.store.dispatch(addTodoAction({taskItem}));
   }
 
-  deleteValue(taskItem: string){ 
+  deleteValue(taskItem: string){
     //console.log($event)
     //console.log(taskItem)
     this.store.dispatch(deleteTodoAction({taskItem}))

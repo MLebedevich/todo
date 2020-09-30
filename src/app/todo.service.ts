@@ -14,7 +14,7 @@ export class TodoService {
 
     postTask(todo: string ) {//IToDo
         //const tasks = todos.taskList;
-        return this.http.post(this.url, todo);//tasks
+        return this.http.post(this.url, {id:2, task: 'Read a book'});//tasks - {id:2, task: 'Read a book'}
     }
 
     deleteTask(todo: string) { // delete -> /todos/:id,for example /todos/2
