@@ -25,7 +25,7 @@ const todoReducer = createReducer(
   })),
   on(loadTodosSuccessAction, (state, {todos}) => ({
     ...state,
-    taskList: [...todos]
+    taskList: [...todos] //создать новый селект и прокинуть todos туда, затем изменения в app component
   }))
 );
 

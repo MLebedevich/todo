@@ -8,3 +8,17 @@
   <li *ngFor="let todoItem of todoList$ | async"
   (click)="deleteValue(todoItem)">{{ todoItem.task }}</li> 
 </ul>
+
+<form [formGroup]='myForm'>
+  <div formArrayName='items'>
+    <div *ngFor="let item of itemsArray.controls; let i=index">
+      <li>
+        <label> <!-- (click)="deleteValue(todoItem)" -->
+          {{ item.value.task }}
+          <input type="text" [formControlName]="i" [value]="item.value.task">
+        </label>
+      </li>
+    </div>
+  </div>
+</form>
+
