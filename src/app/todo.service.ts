@@ -26,8 +26,9 @@ export class TodoService {
         return this.http.get(this.url);
     }
 
-    putTask(id: number) {
-        return this.http.put(this.url, id);
+    putTask(todo: ITodoTask) {
+        const currentUrl = `${this.url}/${todo.id}`;
+        return this.http.put(currentUrl, todo); //{ "id": "5", "task": "go for a walk"} работает
     }
 
 }

@@ -7,7 +7,7 @@ export interface ILoadedToDo {
 }
 
 export interface ITodoTask {
-  id: number;
+  id: any;
   task: string;
   completed?: boolean;
 }

@@ -2,7 +2,7 @@ import { ITodoTask } from './../todo.interface';
 import { TodoService } from './../todo.service';
 import { ToDoActions, getTodosSuccessAction, getTodosFailedAction, 
   deleteTodosSuccessAction, deleteTodosFailedAction, 
-  loadTodosSuccessAction, loadTodosFailedAction } from './actions';
+  loadTodosSuccessAction, loadTodosFailedAction, putTodoSuccessAction, putTodoFailedAction } from './actions';
 import { Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable, of } from 'rxjs';
@@ -37,10 +37,19 @@ export class todoEffects {
   public loadTodos$: Observable<Action> = createEffect(() => 
     this.actions$.pipe(ofType(ToDoActions.LOAD_TODOS),
     mergeMap(() => this.todoService.getTasks().pipe(
-      tap(console.log),
       map((todos: ITodoTask[]) => loadTodosSuccessAction({todos})),
       catchError(() => of(loadTodosFailedAction()))
     )))
+  )
+
+  public changeTodo$: Observable<Action> = createEffect(() =>
+      this.actions$.pipe(ofType(ToDoActions.PUT_TODO), 
+      mergeMap(({taskItem}) => 
+      this.todoService.putTask(taskItem).pipe(
+        tap(console.log),
+        map(()=>putTodoSuccessAction()),
+        catchError(() =>of(putTodoFailedAction()))
+      )))
   )
 
   constructor(

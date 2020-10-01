@@ -32,13 +32,14 @@ export const getTodosFailedAction = createAction(ToDoActions.GET_TODO_FAILED);
 
 export const deleteTodosSuccessAction = createAction(ToDoActions.DELETE_TODO_SUCCESS);
 export const deleteTodosFailedAction = createAction(ToDoActions.DELETE_TODO_FAILED);
-//!!!!
+
 export const loadTodosAction = createAction(ToDoActions.LOAD_TODOS);
 export const loadTodosSuccessAction = createAction(ToDoActions.LOAD_TODOS_SUCCESS,
   props<{todos: ITodoTask[]}>());
 export const loadTodosFailedAction = createAction(ToDoActions.LOAD_TODOS_FAILED);
 
-//export const putTodoAction = createAction(ToDoActions.PUT_TODO);
-//export const putTodoSuccessAction = createAction(ToDoActions.PUT_TODO_SUCCESS);
-//export const putTodoFailedAction = createAction(ToDoActions.PUT_TODO_FAILED);
+export const putTodoAction = createAction(ToDoActions.PUT_TODO, 
+  props<{taskItem: ITodoTask}>());
+export const putTodoSuccessAction = createAction(ToDoActions.PUT_TODO_SUCCESS);
+export const putTodoFailedAction = createAction(ToDoActions.PUT_TODO_FAILED);
 

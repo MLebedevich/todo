@@ -1,5 +1,5 @@
 import { ITodoTask } from './todo.interface';
-import { addTodoAction, deleteTodoAction, loadTodosAction } from './store/actions';
+import { addTodoAction, deleteTodoAction, loadTodosAction, putTodoAction } from './store/actions';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder ,private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
-    this.todoList$.subscribe((data)=>{this.initForm(data)});
+    this.todoList$.subscribe((data)=>{this.initForm(data)}).unsubscribe();
   }
 
   ngOnInit(){
@@ -47,7 +47,8 @@ export class AppComponent {
   deleteValue(taskItem: ITodoTask){
     //console.log($event)
     //console.log(taskItem)
-    this.store.dispatch(deleteTodoAction({taskItem}))
+    this.store.dispatch(deleteTodoAction({taskItem}));
+    this.store.dispatch(putTodoAction({taskItem}));
   }
 
   initForm(array){
