@@ -1,6 +1,6 @@
 import { IToDo, ITodoTask } from './../todo.interface';
 import { Action, createReducer, on } from '@ngrx/store';
-import { addTodoAction, deleteTodoAction, getTodosSuccessAction, loadTodosSuccessAction } from './actions';
+import { addTodoAction, deleteTodoAction, getTodosSuccessAction, loadTodosSuccessAction, putTodoAction } from './actions';
 
 export const initialState: IToDo = { //['Wash the dish', 'Buy potatoe', 'Read a book']
   taskList: [
@@ -25,8 +25,13 @@ const todoReducer = createReducer(
   })),
   on(loadTodosSuccessAction, (state, {todos}) => ({
     ...state,
-    taskList: [...todos] //создать новый селект и прокинуть todos туда, затем изменения в app component
+    taskList: [...todos] //создать новый селект и прокинуть todos туда, затем изменения в app component, пока грузится в старый
   }))
+  /*
+  on(putTodoAction, (state, {taskItem}) =>({
+    ...state,
+    taskList: [...state.taskList.map((x)=>x.id === taskItem.id ? x.task = taskItem.task:x.task)] //x.id === taskItem.id ? x.task = taskItem.task: x.task)]
+  }))*/
 );
 
 export function reducer(state: any, action: Action) {

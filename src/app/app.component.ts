@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { ITodoTask } from './todo.interface';
 import { addTodoAction, deleteTodoAction, loadTodosAction, putTodoAction } from './store/actions';
 import { Component } from '@angular/core';
@@ -19,7 +20,7 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder ,private store: Store<{todoList: any}>) {
     this.todoList$ = this.store.select(selectTaskList);
-    this.todoList$.subscribe((data)=>{this.initForm(data)}).unsubscribe();
+    this.todoList$.subscribe((data)=>{this.initForm(data)});//.unsubscribe();
   }
 
   ngOnInit(){
@@ -52,9 +53,10 @@ export class AppComponent {
   }
 
   initForm(array){
+    const names = array.map(x => x.task)
     this.myForm = this.fb.group({
-      items: this.fb.array(array)
+      items: this.fb.array(names)
     })
-    console.log(this.myForm)
+    console.log(names)
   }
 }
