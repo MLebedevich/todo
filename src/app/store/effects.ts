@@ -44,10 +44,10 @@ export class todoEffects {
 
   public changeTodo$: Observable<Action> = createEffect(() =>
       this.actions$.pipe(ofType(ToDoActions.PUT_TODO), 
-      mergeMap(({taskItem}) => 
+      mergeMap(({taskItem}) =>
       this.todoService.putTask(taskItem).pipe(
         tap(console.log),
-        map(()=>putTodoSuccessAction()),
+        map((taskItem: ITodoTask)=>putTodoSuccessAction({taskItem})),
         catchError(() =>of(putTodoFailedAction()))
       )))
   )

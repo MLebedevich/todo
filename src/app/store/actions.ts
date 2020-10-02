@@ -40,6 +40,7 @@ export const loadTodosFailedAction = createAction(ToDoActions.LOAD_TODOS_FAILED)
 
 export const putTodoAction = createAction(ToDoActions.PUT_TODO, 
   props<{taskItem: ITodoTask}>());
-export const putTodoSuccessAction = createAction(ToDoActions.PUT_TODO_SUCCESS);
+export const putTodoSuccessAction = createAction(ToDoActions.PUT_TODO_SUCCESS, 
+  props<{taskItem: ITodoTask}>());
 export const putTodoFailedAction = createAction(ToDoActions.PUT_TODO_FAILED);
 

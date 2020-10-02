@@ -4,21 +4,22 @@
 </label>
 
 <button (click)="submitValue()">Add</button>
-<ul>
+<!--<ul>
   <li *ngFor="let todoItem of todoList$ | async"
-  (click)="deleteValue(todoItem)">{{ todoItem.task }}</li> 
-</ul>
+  >{{ todoItem.task }}</li> //(click)="deleteValue(todoItem)" 
+</ul> -->
 
 <form [formGroup]='myForm'>
   <div formArrayName='items'>
     <div *ngFor="let item of itemsArray.controls; let i=index">
-      <li>
+      <li> <!-- (click)="logObject(item.value)" -->
         <label> <!-- (click)="deleteValue(todoItem)" -->
-          {{ item.value.task }}
+          <!-- {{ item.value.task }} -->
           <input type="text" [formControlName]="i" [value]="item.value.task">
         </label>
+        <button (click)="logObject(item.value)">Change item</button>
+        <button (click)="deleteValue(item.value)">Delete item</button>
       </li>
     </div>
   </div>
 </form>
-

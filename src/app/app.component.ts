@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { ITodoTask } from './todo.interface';
+import { ITodoTask, IToDo } from './todo.interface';
 import { addTodoAction, deleteTodoAction, loadTodosAction, putTodoAction } from './store/actions';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -26,6 +26,11 @@ export class AppComponent {
   ngOnInit(){
     this.store.dispatch(loadTodosAction());
     //this.initForm();
+    //this.initData();
+  }
+
+  initData(){
+
   }
 
   get itemsArray(): FormArray{
@@ -40,23 +45,34 @@ export class AppComponent {
 
   submitValue(){
     const taskItem: string = this.inputForm.value;
-    //console.log("formValue " + formValue);
     this.store.dispatch(addTodoAction({taskItem}));
-    this.addItem(taskItem);
+    //this.addItem(taskItem);
   }
 
-  deleteValue(taskItem: ITodoTask){
-    //console.log($event)
-    //console.log(taskItem)
+  deleteValue(item){ //taskItem: ITodoTask
+    const taskItem: ITodoTask = JSON.parse(item);
     this.store.dispatch(deleteTodoAction({taskItem}));
+    //this.store.dispatch(putTodoAction({taskItem}));
+  }
+
+  logObject(item){
+    //console.log(item);
+    //console.log(JSON.parse(item));
+    const taskItem: ITodoTask = JSON.parse(item);//{id: "12", task: "eat an apple"};
     this.store.dispatch(putTodoAction({taskItem}));
   }
 
   initForm(array){
-    const names = array.map(x => x.task)
+    const listItems = array.map(x => JSON.stringify(x))//= array.map(x => x.task);
     this.myForm = this.fb.group({
-      items: this.fb.array(names)
-    })
-    console.log(names)
+      items: this.fb.array(listItems)
+    }) /*
+    this.myForm = this.fb.group({
+      items: this.fb.array([
+        this.fb.control(''),
+        this.fb.control('')
+      ])
+    }) */
+    //console.log(JSON.parse(listItems[0]))
   }
 }
